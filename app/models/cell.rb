@@ -3,9 +3,8 @@ class Cell < ApplicationRecord
   NEIGHBOURS = [[-1, 1], [0, 1], [1, 1], [-1, 0], [1, 0], [-1, -1], [0, -1], [1, -1]]
 
   def tick
-    if underpopulated? || overpopulated?
-      die
-    end
+    die if underpopulated? || overpopulated?
+    live if !underpopulated? && !overpopulated?
   end
 
   def underpopulated?
@@ -38,6 +37,13 @@ class Cell < ApplicationRecord
   end
 
   def die
-    self.class.delete(id)
+    alive = false
+    self.save
+    self.class.delete(id) if alive_neighbours == 0
+  end
+
+  def live
+    alive = true
+    self.save
   end
 end

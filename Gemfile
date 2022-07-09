@@ -5,6 +5,7 @@ ruby "3.1.2"
 gem "rails", "~> 7.0.2", ">= 7.0.2.4"
 gem "puma", "~> 5.0"
 gem "pg"
+gem "pp"
 # gem "jbuilder"
 # gem "redis", "~> 4.0"
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]

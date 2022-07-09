@@ -20,15 +20,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_09_204144) do
     t.boolean "alive", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "grid_id", null: false
+    t.index ["grid_id"], name: "index_cells_on_grid_id"
     t.index ["x", "y"], name: "index_cells_on_x_and_y", unique: true
   end
 
   create_table "grids", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "cell_id", null: false
-    t.index ["cell_id"], name: "index_grids_on_cell_id"
   end
 
-  add_foreign_key "grids", "cells"
+  add_foreign_key "cells", "grids"
 end
